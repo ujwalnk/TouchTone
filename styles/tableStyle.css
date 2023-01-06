@@ -1,0 +1,10 @@
+table tr td{
+    border-color: grey;
+    border-collapse: collapse;
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+table{
+    margin: 10px;
+}

@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "Ujwal@DELL"]
+	url = https://github.com/ujwalnk/TouchTone.git
+	fetch = +refs/heads/*:refs/remotes/Ujwal@DELL/*
+[branch "master"]
+	remote = Ujwal@DELL
+	merge = refs/heads/master
