@@ -1,7 +1,6 @@
 table tr td{
-    border-color: grey;
     border-collapse: collapse;
-    border: 1px solid grey;
+    border: 0.5px solid rgba(128, 128, 128, 0.284);
     padding: 10px;
 }
 
