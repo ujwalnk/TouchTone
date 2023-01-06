@@ -27,6 +27,12 @@ function dump() {
  * Load data from Browser Storage
  */
 function load() {
+
+    if(localStorage.length == 0){
+        console.log("No Saved Data to LOAD");
+        dump();
+    }
+
     try {
         specialNotes = JSON.parse(localStorage.getItem("specialNotes"));
         console.log(type(specialNotes));

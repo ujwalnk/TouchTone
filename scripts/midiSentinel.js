@@ -8,9 +8,9 @@ var pauseStatus = false;
 
 // Special notes: Pause, Space, New Line
 var specialNotes = {
-    "erase": null,
-    "tab": null,
-    "line": null
+    "erase": "",
+    "tab": "",
+    "line": ""
 };
 
 var srgNotes = {}; // SrgNotes

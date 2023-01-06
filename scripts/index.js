@@ -1,10 +1,10 @@
-var cellsPerLine;
-var notesPerCell;
+var cellsPerLine = 4;
+var notesPerCell = 4;
 
-// Display Type (1: Staff, 2: ABC, 3: SRG (Default))
-var displayType;
+// Display Type (1: Staff, 2: ABC (Default), 3: SRG)
+var displayType = 2;
 
-var inputType;
+var inputType = 2;
 
 function display(rawMIDI) {
     if (displayType == 1) {
