@@ -17,10 +17,18 @@ function convert2SRG(rawCopy) {
                 if (note.replace(/[0-9]/g, '') == raw[x].replace(/[0-9]/g, '')) {
                     if (note.match(/\d+/)[0] > raw[x].match(/\d+/)[0]) {
                         // Lower Octave
-                        raw[x] = srgNotes[note]["L"];
+                        if (srgNotes[note]["L"].length != 0)
+                            raw[x] = srgNotes[note]["L"];
+                        else {
+                            raw[x] = "<span class='lowerNote'>" + srgNotes[note]["M"] + "</span>";
+                        }
                     } else {
                         // Higher Octave
-                        raw[x] = srgNotes[note]["H"];
+                        if (srgNotes[note]["H"].length != 0)
+                            raw[x] = srgNotes[note]["H"];
+                        else {
+                            raw[x] = "<span class='higherNote'>" + srgNotes[note]["M"] + "</span>";
+                        }
                     }
                     break;
                 }

@@ -1,0 +1,25 @@
+.higherNote{
+    color: dodgerblue;
+    position: relative;
+    width: fit-content;
+}
+
+.lowerNote{
+    color:red;
+    position: relative;
+    width: fit-content;
+}
+
+.higherNote::after {
+    position: absolute;
+    bottom: 60%;
+    left: 40%;
+    content: '\2024'
+}
+
+.lowerNote::after {
+    position: absolute;
+    left: 30%;
+    bottom: -30%;
+    content: '\2024'
+}
