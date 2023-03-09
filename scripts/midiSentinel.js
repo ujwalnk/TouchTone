@@ -23,29 +23,14 @@ WebMidi.enable(function () {
     console.log(WebMidi.inputs);
     console.log(WebMidi.outputs);
 
-    // Retrieve an input by name, id or index
+    // Retrieve an input by name, id or index - Currently using index mode
     // input = WebMidi.getInputByName("CASIO USB-MIDI");
-    // OR...
     // input = WebMidi.getInputById("1809568182");
     input = WebMidi.inputs[0];
     console.log(input);
 
     // Listen for a 'note on' message on all channels
     input.addListener('noteon', 'all', noteListener);
-
-    // Listen to pitch bend message on channel 3
-    // input.addListener('pitchbend', 3,
-    //     function (e) {
-    //         console.log("Received 'pitchbend' message.", e);
-    //     }
-    // );
-
-    // // Listen to control change message on all channels
-    // input.addListener('controlchange', "all",
-    //     function (e) {
-    //         console.log("Received 'controlchange' message.", e);
-    //     }
-    // );
 
     // Remove all listeners for 'noteoff' on all channels
     // input.removeListener('noteoff');
@@ -79,8 +64,8 @@ function noteListener(e) {
                 raw.push("\n");
             }
         } else {
-            // Regular Key Function
 
+            // Regular Key Function
             if (e.note.accidental == "#") {
                 raw.push(e.note.name + e.note.octave + "#");
             } else {
@@ -88,7 +73,6 @@ function noteListener(e) {
             }
 
         }
-        console.log("Sending data 2 parent");
 
         // Send data to parent function
         display(raw);
@@ -127,18 +111,19 @@ function getSRGNotes(e) {
     srgNotes[e] = { "L": "", "M": "", "H": "" };
     document.getElementById("noteTextBox" + Number(Object.keys(srgNotes).length)).value = e;
     console.log("SRG Notes:", srgNotes);
+
+    // Alert the user on completely entering all the required data
     if (Object.keys(srgNotes).length == 12) {
         alert("DONE");
+
+        // Remove the pause on the editor data fill
         pauseStatus = false;
     }
 }
 
 function getSRGNotation() {
     for (let x = 1; x < 13; x++) {
-        // srgNotes[Object.keys(srgNotes)[x - 1]]["M"] = document.getElementById("notationTextBox" + x).value;
-        // srgNotes[Object.keys(srgNotes)[x - 1]]["L"] = document.getElementById("notationTextBox" + x + "L").value;
-        // srgNotes[Object.keys(srgNotes)[x - 1]]["H"] = document.getElementById("notationTextBox" + x + "H").value;
-
+        // Put the notes of a octave higher, lower and paritcular octave into the array
         srgNotes[Object.keys(srgNotes)[x - 1]] = { "L": document.getElementById("notationTextBox" + x + "L").value, "M": document.getElementById("notationTextBox" + x).value, "H": document.getElementById("notationTextBox" + x + "H").value }
     }
 
