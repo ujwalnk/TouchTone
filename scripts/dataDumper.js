@@ -115,6 +115,7 @@ function hookUpValues() {
             break;
     }
 
+    // Hookup InputType Select
     switch (inputType) {
         case 1:
             document.getElementById("inputMIDI").checked = true;
