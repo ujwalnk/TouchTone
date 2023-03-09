@@ -2,6 +2,7 @@
  * Dump all Data to Browser Storage
  */
 function dump() {
+    // Dump number of cellsPerLine & notePerLine to browser Storage
     localStorage.setItem("cellsPerLine", cellsPerLine);
     localStorage.setItem("notePerCell", notesPerCell);
 
@@ -137,6 +138,7 @@ setInterval(function () {
     localStorage.setItem("raw", JSON.stringify(raw));
 }, 3 * 1000); // 60 * 1000 milsec
 
+// Clear the Editor & Local Storage on Browser
 function free() {
     raw = [];
     dump();

@@ -8,11 +8,13 @@ var inputType = 2;
 
 function display(rawMIDI) {
     if (displayType == 1) {
+        // Printing to Staff Notation
         updateScript(addPipesNLines(convert2Staff(rawMIDI), notesPerCell, cellsPerLine).toString());
     } else if (displayType == 2) {
+        // Printing to ABC Notation
         updateTableABC(addPipesNLines(rawMIDI, notesPerCell, cellsPerLine));
     } else {
-        console.log("Here at index");
+        // Printing to Custom Notation
         updateTableSRG(addPipesNLines(convert2SRG(rawMIDI), notesPerCell, cellsPerLine));
     }
 }
