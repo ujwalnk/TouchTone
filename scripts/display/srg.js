@@ -1,3 +1,13 @@
+/**
+ * Author: Ujwal N K
+ * Date: 7 Jan, 2023
+ * Custom Notation Handler
+ */
+
+/**
+ * Fromat and add notes to Table
+ * @param {String} abc - Custom notation to add to table
+ */
 function updateTableSRG(abc) {
 
     console.log("LOG:", abc);

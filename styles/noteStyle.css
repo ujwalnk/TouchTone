@@ -10,6 +10,7 @@
     width: fit-content;
 }
 
+/*Add a dot above the higher octave note*/
 .higherNote::after {
     position: absolute;
     bottom: 60%;
@@ -17,6 +18,7 @@
     content: '\2024'
 }
 
+/*Add a dot below the lower octave note*/
 .lowerNote::after {
     position: absolute;
     left: 30%;
