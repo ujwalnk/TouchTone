@@ -25,6 +25,10 @@ function updateTableABC(abc) {
         table = document.createElement("table");
         table.className = "srgNotationTable";
         table.id = "srgNotationTable";
+
+        // TODO: Check for content Editable
+        table.contentEditable = true;
+        
         table.insertRow();
         
         currentRow = table.firstChild.firstChild;
@@ -34,7 +38,6 @@ function updateTableABC(abc) {
         document.getElementById("paper").appendChild(table);
         
     } else {
-        
         table = document.getElementById("srgNotationTable");
         currentRow = table.firstChild.lastChild;
         //console.log(currentRow);

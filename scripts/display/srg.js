@@ -20,15 +20,21 @@ function updateTableSRG(abc) {
 
     // Create table if not exists 
     if (document.getElementById("srgNotationTable") == null) {
-        console.log("Creating Table");
+
         table = document.createElement("table");
         table.className = "srgNotationTable";
         table.id = "srgNotationTable";
+        
+        // TODO: Check for content Editable
+        table.contentEditable = true;
+        
         table.insertRow();
+
         currentRow = table.firstChild.firstChild;
         currentRow.insertCell(-1);
+
         document.getElementById("paper").appendChild(table);
-        console.log(currentRow);
+
     } else {
         table = document.getElementById("srgNotationTable");
         currentRow = table.firstChild.lastChild;

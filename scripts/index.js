@@ -1,5 +1,6 @@
 var cellsPerLine = 4;
 var notesPerCell = 4;
+var noNewLines = 1;
 
 // Display Type (1: Staff, 2: ABC (Default), 3: SRG)
 var displayType = 2;
@@ -9,13 +10,13 @@ var inputType = 2;
 function display(rawMIDI) {
     if (displayType == 1) {
         // Printing to Staff Notation
-        updateScript(addPipesNLines(convert2Staff(rawMIDI), notesPerCell, cellsPerLine).toString());
+        updateScript(addPipesNLines(convert2Staff(rawMIDI), notesPerCell, cellsPerLine, noNewLines).toString());
     } else if (displayType == 2) {
         // Printing to ABC Notation
-        updateTableABC(addPipesNLines(rawMIDI, notesPerCell, cellsPerLine));
+        updateTableABC(addPipesNLines(rawMIDI, notesPerCell, cellsPerLine, noNewLines));
     } else {
         // Printing to Custom Notation
-        updateTableSRG(addPipesNLines(convert2SRG(rawMIDI), notesPerCell, cellsPerLine));
+        updateTableSRG(addPipesNLines(convert2SRG(rawMIDI), notesPerCell, cellsPerLine, noNewLines));
     }
 }
 
@@ -70,4 +71,30 @@ function inputSelect() {
     document.head.appendChild(scriptA);
     document.head.appendChild(scriptB);
     // start();*/
+}
+
+function pauseToggle(){
+    pauseBtn = document.getElementById("pauseBtn");
+    pauseBtnSVG = pauseBtn.firstChild;
+    
+    // Toggle the button icon & button Background color
+    pauseBtnSVG.classList.toggle("bi-play-fill");
+    pauseBtn.classList.toggle("btn-primary");
+
+    pauseBtnSVG.classList.toggle("bi-pause-fill");
+    pauseBtn.classList.toggle("btn-danger");
+
+    // Toggle Pause Status
+    if(pauseStatus){
+        pauseEnd();
+    }else{
+        pause();
+    }
+
+    // Grey background indicating pause
+    if(document.body.style.backgroundColor == "grey"){
+        document.body.style.backgroundColor = "white";
+    } else{
+        document.body.style.backgroundColor = "grey";
+    }
 }

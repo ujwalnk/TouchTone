@@ -5,6 +5,7 @@ function dump() {
     // Dump number of cellsPerLine & notePerLine to browser Storage
     localStorage.setItem("cellsPerLine", cellsPerLine);
     localStorage.setItem("notePerCell", notesPerCell);
+    localStorage.setItem("noNewLines", noNewLines);
 
     localStorage.setItem("specialNotes", JSON.stringify(specialNotes));
 
@@ -45,6 +46,13 @@ function load() {
     } catch (err) {
         console.log("Cells Per Line Note found")
     }
+
+    try {
+        noNewLines = Number.parseInt(localStorage.getItem("noNewLines"));
+    } catch (err) {
+        console.log("Empty Lines Per New Line Not found");
+    }
+
     try {
         notesPerCell = Number.parseInt(localStorage.getItem("notePerCell"));
     } catch (err) {

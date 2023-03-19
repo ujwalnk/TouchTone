@@ -38,19 +38,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="lib\bootstrap-5.0.2-dist\css\bootstrap.min.css">
 
-
+    <!-- FavIcon -->
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
 </head>
 
 <body onload="load();hookUpValues();">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Touch Tone</a>
+            <a class="navbar-brand text-primary" href="#"><img src="/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> &nbsp; Touch Tone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="d-flex">
+                <!-- Key: Pause / Play Input -->
+                <button class="btn btn-danger" id="pauseBtn" onclick="pauseToggle()"><i class="bi bi-pause-fill"></i></button> &nbsp;
+
                 <!-- Key: Free Memory -->
                 <button class="btn btn-danger" onclick="free()"><i class="bi bi-trash3-fill"></i></button> &nbsp;
                 
