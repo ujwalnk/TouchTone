@@ -60,14 +60,14 @@ function noteListener(e) {
         }
 
         // Check for Alternate Key Function
-        if (Object.values(specialNotes).includes(e.note.name + e.note.octave + e.note.accidental)) {
+        if (Object.values(specialNotes).includes(e.note.name + e.note.octave + accidental)) {
 
             console.log("Alternate Key Detected");
-            if (e.note.name + e.note.octave + e.note.accidental == specialNotes["erase"]) {
+            if (e.note.name + e.note.octave + accidental == specialNotes["erase"]) {
                 raw.pop();
-            } else if (e.note.name + e.note.octave + e.note.accidental == specialNotes["tab"]) {
+            } else if (e.note.name + e.note.octave + accidental == specialNotes["tab"]) {
                 raw.push("|");
-            } else if (e.note.name + e.note.octave + e.note.accidental == specialNotes["line"]) {
+            } else if (e.note.name + e.note.octave + accidental == specialNotes["line"]) {
                 raw.push("\n");
             }
         } else {
