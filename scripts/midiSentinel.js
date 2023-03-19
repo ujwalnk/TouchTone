@@ -52,6 +52,13 @@ function noteListener(e) {
     console.log("Received 'noteon' message (" + e.note.name + e.note.accidental + e.note.octave + ").");
     if (!pauseStatus) {
         console.log(specialNotes, e.note.name + e.note.octave + e.note.accidental);
+        // Accidental - when not used, becomes undefined
+
+        accidental = e.note.accidental;
+        if (e.note.accidental == undefined) {
+            accidental = "";
+        }
+
         // Check for Alternate Key Function
         if (Object.values(specialNotes).includes(e.note.name + e.note.octave + e.note.accidental)) {
 
