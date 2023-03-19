@@ -93,29 +93,48 @@ function noteListener(e) {
 }
 
 function getEraserNote(e) {
+    // Set current note as the erase note
     specialNotes["erase"] = e;
+
+    // Display note as the erase note in the dialog box
     document.getElementById("eraseNoteTextBox").value = specialNotes["erase"];
     console.log(specialNotes);
+
+    // Resume recording
     pauseStatus = false;
 }
 
 function getTabNote(e) {
+    // Set current note as the tab note
     specialNotes["tab"] = e;
+
+    // Display note as the tab note in the dialog box
     document.getElementById("tabNoteTextBox").value = specialNotes["tab"];
     console.log(specialNotes);
+
+    // Resume recording
     pauseStatus = false;
 }
 
 function getLineNote(e) {
+    // Set current note as the new line note
     specialNotes["line"] = e;
+
+    // Display note as the new line note in the dialog box
     document.getElementById("lineNoteTextBox").value = specialNotes["line"];
     console.log(specialNotes);
+
+    // Resume recording
     pauseStatus = false;
 }
 
 function getSRGNotes(e) {
     console.log("noteTextBox" + Number(Object.keys(srgNotes).length + 1));
+
+    // Create empty dictionary for lower,  middle & higher octave
     srgNotes[e] = { "L": "", "M": "", "H": "" };
+
+    // Display the values in the custom notes dialog box
     document.getElementById("noteTextBox" + Number(Object.keys(srgNotes).length)).value = e;
     console.log("SRG Notes:", srgNotes);
 

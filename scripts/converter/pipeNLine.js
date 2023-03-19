@@ -10,11 +10,12 @@
  * @param {Array} arr - User inputted midi data
  * @param {Number} notesPerCell - Number of notes in one cell
  * @param {Number} cellsPerLine - Number of cells in one line
+ * @param {Number} emptyLinesPerNewLine - Number of new Lines for every new Line
  * @returns  - Formatted array with piping & new Lines into ABC / Staff Format
  */
 
 
-function addPipesNLines(arr, notesPerCell, cellsPerLine) {
+function addPipesNLines(arr, notesPerCell, cellsPerLine, emptyLinesPerNewLine) {
     var pipeCounter = 0;
     var lineCounter = 0;
 
@@ -47,6 +48,18 @@ function addPipesNLines(arr, notesPerCell, cellsPerLine) {
 
         // On number of cells per line == cellsPerLine insert a newline & clear the lineCtr
         if(lineCtr == cellsPerLine) {
+
+            // Add extra lines incase user intended extra lines
+            for(let x = 0; x < emptyLinesPerNewLine - 1; x ++){
+                resp.push("\n");
+
+                // Add number of cells to the row as the previous row
+                for(let y = 0; y < cellsPerLine; y++){
+                    resp.push("|");
+                }
+            }
+
+            // Add new line for the next set of entires
             resp.push("\n");
             lineCtr = 0;
         }
