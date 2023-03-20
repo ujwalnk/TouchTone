@@ -13,10 +13,14 @@
     <script src="./lib/abc/abcjs.js"></script>
     <script src="./lib/abc/config.js"></script>
 
+    <!-- Bootstrap Bundle JS for Popper -->
+    <script src="./lib/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Custom Scripts -->
     <script src="./scripts/dataDumper.js"></script>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/converter/pipeNLine.js"></script>
+    <script src="./scripts/dataHandler.js"></script>
 
     <!-- Script Display Modules -->
     <script src="./scripts/display/abc.js"></script>
@@ -46,22 +50,20 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand text-primary" href="#"><img src="./icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> &nbsp; Touch Tone</a>
+            <a class="navbar-brand text-primary" href="#"><img src="./icon.png" width="30" height="30"
+                    class="d-inline-block align-top" alt=""> &nbsp; Touch Tone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="d-flex">
                 <!-- Key: Pause / Play Input -->
-                <button class="btn btn-danger" id="pauseBtn" onclick="pauseToggle()"><i class="bi bi-pause-fill"></i></button> &nbsp;
+                <button class="btn btn-danger" id="pauseBtn" onclick="pauseToggle()"><i
+                        class="bi bi-pause-fill"></i></button> &nbsp;
 
                 <!-- Key: Free Memory -->
                 <button class="btn btn-danger" onclick="free()"><i class="bi bi-trash3-fill"></i></button> &nbsp;
-                
-                <!-- Key: Function Key -->
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#functionKeyModal"><i
-                        class="bi bi-alt"></i></button> &nbsp;
-                
+
                 <!-- Key: Setting Keys -->
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingsModal"><i
                         class="bi bi-wrench-adjustable-circle"></i></button>
@@ -69,6 +71,119 @@
         </div>
     </nav>
 
+    <!-- MODAL: Settings -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary" id="settingsModalLable"><i
+                            class="bi bi-wrench-adjustable-circle-fill"></i> &nbsp; Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <span class="input-group-text" id="mode"><i class="bi bi-palette"></i> &nbsp;
+                            Mode</span>
+
+                        <input type="radio" class="btn-check" name="modeOptions" id="artist" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="artist" onclick="displayType = 1;"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                            title="Play and Store Notes">Artist</label>
+
+                        <input type="radio" class="btn-check" name="modeOptions" id="perfectionModeautocomplete=" off">
+                        <label class="btn btn-outline-primary" for="perfectionMode" onclick="displayType = 2;"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                            title="Play along mode">Perfection</label>
+                    </div>
+                    <br> <br>
+
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-music-note-list"></i> &nbsp;
+                            Notation Type</span>
+
+                        <input type="radio" class="btn-check" name="options" id="staffNotation" autocomplete="off"
+                            checked>
+                        <label class="btn btn-outline-primary" for="staffNotation" onclick="displayType = 1;">Staff
+                            Notation</label>
+
+                        <input type="radio" class="btn-check" name="options" id="abcNotation" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="abcNotation" onclick="displayType = 2;">ABC
+                            Notation</label>
+
+                        <input type="radio" class="btn-check" name="options" id="srgNotation" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="srgNotation" onclick="displayType = 3;">Custom
+                            Notation</label>
+                    </div>
+
+                    <br> <br>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-music-note"></i> &nbsp; Notes
+                            Per Cell</span>
+                        <input type="number" class="form-control" placeholder="Number of Notes in a Cell"
+                            aria-label="Username" aria-describedby="basic-addon1" id="notesPerCellInput"
+                            onchange="notesPerCell = this.value;">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-bounding-box-circles"></i>
+                            &nbsp; &nbsp; Cells Per Line</span>
+                        <input type="number" class="form-control" placeholder="Number of Cells in a Line"
+                            aria-label="Username" aria-describedby="basic-addon1" id="cellsPerLineInput"
+                            onchange="cellsPerLine = this.value;">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-arrow-return-left"></i> &nbsp;
+                            New Lines</span>
+                        <input type="number" class="form-control" placeholder="No. of blank lines for every line"
+                            aria-label="Username" aria-describedby="basic-addon1" id="newLinesPerNewLineInput"
+                            onchange="noNewLines = this.value;">
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-plugin"></i> &nbsp; Input
+                            Select</span>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="inputMIDI" autocomplete="off"
+                            onchange="inputType = 1">
+                        <label class="btn btn-outline-primary" for="inputMIDI">MIDI</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="inputMIC" autocomplete="off" checked
+                            onchange="inputType = 2">
+                        <label class="btn btn-outline-primary" for="inputMIC">Microphone</label>
+                    </div> <br> <br>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-asterisk"></i> &nbsp;Custom Notation</span>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal"
+                            data-bs-target="#srgConfigureModal">Configure </button>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal"
+                            data-bs-target="#srgConfigureModal">Import</button>
+                    </div> <br><br>
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#functionKeyModal" data-bs-dismiss="modal"><i class="bi bi-alt"></i>
+                        &nbsp;Configure Alternate
+                        Keys
+                    </button>
+
+                    <br><br>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-filetype-json"></i>&nbsp; Music
+                            File</span>
+                        <input type="file" class="form-control" id="importButton" hidden onchange="recallMusic(this)">
+                        <label class="btn btn-primary" for="importButton">Import</label>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-dismiss="modal" onclick="saveMusic()">
+                            &nbsp; Export
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="dump()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL: Function Key Modal -->
     <div class="modal fade" id="functionKeyModal" tabindex="-1" aria-labelledby="functionKeyModal" aria-hidden="true">
@@ -114,78 +229,6 @@
                             onclick="pauseHandler = getLineNote; pauseStatus = true;"><i
                                 class="bi bi-record-circle-fill text-danger"></i></button>
                     </div><br>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="dump()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: Settings -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary" id="settingsModalLable"><i
-                            class="bi bi-wrench-adjustable-circle-fill"></i> &nbsp; Settings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-music-note-list"></i> &nbsp;
-                            Notation Type</span>
-
-                        <input type="radio" class="btn-check" name="options" id="staffNotation" autocomplete="off"
-                            checked>
-                        <label class="btn btn-outline-primary" for="staffNotation" onclick="displayType = 1;">Staff
-                            Notation</label>
-
-                        <input type="radio" class="btn-check" name="options" id="abcNotation" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="abcNotation" onclick="displayType = 2;">ABC
-                            Notation</label>
-
-                        <input type="radio" class="btn-check" name="options" id="srgNotation" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="srgNotation" onclick="displayType = 3;">Custom
-                            Notation</label>
-                    </div>
-
-                    <br> <br>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-music-note"></i> &nbsp; Notes
-                            Per Cell</span>
-                        <input type="number" class="form-control" placeholder="Number of Notes in a Cell"
-                            aria-label="Username" aria-describedby="basic-addon1" id="notesPerCellInput"
-                            onchange="notesPerCell = this.value;">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-bounding-box-circles"></i>
-                            &nbsp; &nbsp; Cells Per Line</span>
-                        <input type="number" class="form-control" placeholder="Number of Cells in a Line"
-                            aria-label="Username" aria-describedby="basic-addon1" id="cellsPerLineInput"
-                            onchange="cellsPerLine = this.value;">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">New Lines</span>
-                        <input type="number" class="form-control" placeholder="No. of blank lines for every line"
-                            aria-label="Username" aria-describedby="basic-addon1" id="newLinesPerNewLineInput"
-                            onchange="noNewLines = this.value;">
-                    </div>
-
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-plugin"></i> &nbsp; Input
-                            Select</span>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="inputMIDI" autocomplete="off" onchange="inputType = 1">
-                        <label class="btn btn-outline-primary" for="inputMIDI">MIDI</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="inputMIC" autocomplete="off" checked onchange="inputType = 2">
-                        <label class="btn btn-outline-primary" for="inputMIC">Microphone</label>
-                    </div> <br> <br>
-
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#srgConfigureModal"><i class="bi bi-asterisk"></i> &nbsp;Configure Custom
-                        Notation</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="dump()">Save</button>
