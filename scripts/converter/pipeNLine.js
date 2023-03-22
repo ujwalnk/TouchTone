@@ -33,6 +33,17 @@ function addPipesNLines(arr, notesPerCell, cellsPerLine, emptyLinesPerNewLine) {
         } else if(arr[x] == "\n") {
             // On finding a user inserted newline, reset the newline counter
             lineCtr = 0;
+            
+            // Add extra lines incase user intended extra lines - even when user inputs new line explicitly
+            for(let x = 0; x < emptyLinesPerNewLine - 1; x ++){
+                resp.push("\n");
+
+                // Add number of cells to the row as the previous row
+                for(let y = 0; y < cellsPerLine; y++){
+                    resp.push("|");
+                }
+            }
+
         } else {
             // Increase the piping counter
             pipeCtr++;
