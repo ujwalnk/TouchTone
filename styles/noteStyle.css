@@ -25,3 +25,15 @@
     bottom: -30%;
     content: '\2024'
 }
+
+.markNote{
+    /* background: yellow; */
+    /* border-radius: 40%; */
+}
+
+.markNote::after{
+    position: absolute;
+    bottom: 60%;
+    left: 40%;
+    content: '\2024'
+}

@@ -10,7 +10,8 @@ var inputType = 2;
 function display(rawMIDI) {
     if (displayType == 1) {
         // Printing to Staff Notation
-        updateScript(addPipesNLines(convert2Staff(rawMIDI), notesPerCell, cellsPerLine, noNewLines).toString());
+        // No extra lines in staff notation
+        updateScript(addPipesNLines(convert2Staff(rawMIDI), notesPerCell, cellsPerLine, 1).toString());
     } else if (displayType == 2) {
         // Printing to ABC Notation
         updateTableABC(addPipesNLines(rawMIDI, notesPerCell, cellsPerLine, noNewLines));
@@ -18,6 +19,8 @@ function display(rawMIDI) {
         // Printing to Custom Notation
         updateTableSRG(addPipesNLines(convert2SRG(rawMIDI), notesPerCell, cellsPerLine, noNewLines));
     }
+
+    // playAlongTable();
 }
 
 function inputSelect() {
@@ -98,3 +101,10 @@ function pauseToggle(){
         document.body.style.backgroundColor = "grey";
     }
 }
+
+
+// Enable tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
