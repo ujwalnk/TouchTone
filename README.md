@@ -2,7 +2,6 @@
 
 Devising notes for a song is not a simple task, playing it out on your instrument, writing it down, scratching it, and rewriting it is a huge hassle. Introducing [TouchTone](https://ujwalnk.github.io/TouchTone) the Web-based, no-installation, hassle-free solution for this daunting task of amateur musicians.
 
----
 
 # Getting Started
 
