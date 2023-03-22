@@ -2,16 +2,17 @@
 
 Devising notes for a song is not a simple task, playing it out on your instrument, writing it down, scratching it, and rewriting it is a huge hassle. Introducing TouchTone the Web-based, no-installation, hassle-free solution for this daunting task of amateur musicians.
 
+
+Try [TouchTone](https://ujwalnk.github.io/TouchTone) here!
 ---
 
 # Getting Started
 
-- Connect the MIDI output of your keyboard to any device (Android / MAC / Windows / Linux)
-- Open the TouchTone webpage - ujwalnk.github.io/TouchTone
+- Connect the MIDI output of your instrument to any device (Android / MAC / Windows / Linux)
+- Open the TouchTone webpage - [TouchTone](https://ujwalnk.github.io/TouchTone)
 - Configure Special Keys for Erase, New Line & tab input in the settings menu
 - Set your choice of notation - Staff, Western, Custom
 - Start blasting music and let the app do the rest for you
-
 
 # Configuring Alternate Keys
 - Open the settings Menu - button at the top right
