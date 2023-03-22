@@ -46,12 +46,11 @@ function recallMusic(e){
         rawJSONText = fileReader.result;
         
         rawJSON = JSON.parse(rawJSONText);
-        localStorage.setItem("raw", rawJSON["raw"]);
+        localStorage.setItem("raw", JSON.stringify(rawJSON["raw"]));
         raw = rawJSON["raw"];
-        load();
+        // load();
 
         console.log(rawJSON["raw"]);
-
     }
 
     fileReader.readAsText(e.files[0]);

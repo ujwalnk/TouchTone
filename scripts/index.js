@@ -19,6 +19,8 @@ function display(rawMIDI) {
         // Printing to Custom Notation
         updateTableSRG(addPipesNLines(convert2SRG(rawMIDI), notesPerCell, cellsPerLine, noNewLines));
     }
+
+    // playAlongTable();
 }
 
 function inputSelect() {

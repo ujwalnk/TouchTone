@@ -29,12 +29,6 @@ function dump() {
  * Load data from Browser Storage
  */
 function load() {
-
-    if(localStorage.length == 0){
-        console.log("No Saved Data to LOAD");
-        dump();
-    }
-
     try {
         specialNotes = JSON.parse(localStorage.getItem("specialNotes"));
         console.log(type(specialNotes));
@@ -92,9 +86,14 @@ function load() {
             display(raw);
         }
     } catch (err) {
-        console.log(err);
-        console.log("raw not found");
+        console.error(err);
+        console.log("raw not found", localStorage.getItem("raw"));
     }
+
+    // if(localStorage.length == 0){
+    //     console.log("No Saved Data to LOAD");
+    //     dump();
+    // }
 }
 
 function hookUpValues() {

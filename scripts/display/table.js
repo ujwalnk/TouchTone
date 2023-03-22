@@ -48,9 +48,9 @@ function updateTableABC(abc) {
 
             // Add # as a superscript incase it exists
             if (abc[x].includes("#"))
-                currentRow.lastChild.innerHTML += abc[x].replace(/[^a-z]/gi, '') + "<sub>" + abc[x].match(/(\d+)/)[1] + "</sub><sup>#</sup> ";
+                currentRow.lastChild.innerHTML += "<span>" + abc[x].replace(/[^a-z]/gi, '') + "<sub>" + abc[x].match(/(\d+)/)[1] + "</sub><sup>#</sup></span> ";
             else
-                currentRow.lastChild.innerHTML += abc[x].replace(/[^a-z]/gi, '') + "<sub>" + abc[x].match(/(\d+)/)[1] + "</sub>" + " ";
+                currentRow.lastChild.innerHTML += "<span>" + abc[x].replace(/[^a-z]/gi, '') + "<sub>" + abc[x].match(/(\d+)/)[1] + "</sub></span>" + " ";
 
         }
         prevCur = abc[x];
