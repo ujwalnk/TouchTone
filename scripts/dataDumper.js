@@ -60,14 +60,14 @@ function load() {
   try {
     noNewLines = Number.parseInt(localStorage.getItem("noNewLines"));
   } catch (err) {
-    console.log("DisplayType not found");
+    console.log("newLines Option not set");
   }
 
   try {
     inputType = Number.parseInt(localStorage.getItem("inputSource"));
     inputSelect();
   } catch (err) {
-    console.log("DisplayType not found");
+    console.log("inputSource not set");
   }
 
   try {
