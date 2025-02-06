@@ -13,13 +13,18 @@
  * @param {Number} emptyLinesPerNewLine - Number of new Lines for every new Line
  * @returns  - Formatted array with piping & new Lines into ABC / Staff Format
  */
-
-
 function addPipesNLines(arr, notesPerCell, cellsPerLine, emptyLinesPerNewLine) {
     var pipeCounter = 0;
     var lineCounter = 0;
 
     var resp = [];
+
+    for(let lines = 1; lines < emptyLinesPerNewLine; lines++){
+        for(let pipes = 0; pipes < cellsPerLine; pipes ++){
+            resp.push("|");
+        }
+        resp.push("\n");
+    }
     
     // Total Pipes & Lines Counter
     var pipeCtr = 0;

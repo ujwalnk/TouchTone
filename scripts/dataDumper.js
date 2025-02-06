@@ -33,17 +33,24 @@ function load() {
     specialNotes = JSON.parse(localStorage.getItem("specialNotes"));
     console.log(type(specialNotes));
   } catch (err) {
-    console.log("Spcial Notes Note found");
+    console.log("Special Notes Not found");
+    specialNotes: {
+        erase: "";
+        tab: "";
+        line: "";
+    }
   }
   try {
     cellsPerLine = Number.parseInt(localStorage.getItem("cellsPerLine"));
   } catch (err) {
-    console.log("Cells Per Line Note found");
+    console.log("Cells Per Line Not found");
+    cellsPerLine = 4;
   }
 
   try {
     noNewLines = Number.parseInt(localStorage.getItem("noNewLines"));
   } catch (err) {
+    noNewLines = 0;
     console.log("Empty Lines Per New Line Not found");
   }
 
@@ -51,21 +58,18 @@ function load() {
     notesPerCell = Number.parseInt(localStorage.getItem("notePerCell"));
   } catch (err) {
     console.log("Notes Per Cell Note found");
+    notesPerCell = 4;
   }
   try {
     displayType = Number.parseInt(localStorage.getItem("displayType"));
   } catch (err) {
+    displayType = 1;
     console.log("DisplayType not found");
-  }
-  try {
-    noNewLines = Number.parseInt(localStorage.getItem("noNewLines"));
-  } catch (err) {
-    console.log("newLines Option not set");
   }
 
   try {
     inputType = Number.parseInt(localStorage.getItem("inputSource"));
-    inputSelect();
+    // inputSelect();
   } catch (err) {
     console.log("inputSource not set");
   }
@@ -96,9 +100,21 @@ function load() {
 
 function hookUpValues() {
   // HookUp Special Key Values
-  document.getElementById("eraseNoteTextBox").value = specialNotes["erase"];
-  document.getElementById("tabNoteTextBox").value = specialNotes["tab"];
-  document.getElementById("lineNoteTextBox").value = specialNotes["line"];
+  try {
+    document.getElementById("eraseNoteTextBox").value = specialNotes["erase"];
+  } catch (TypeError) {
+    document.getElementById("eraseNoteTextBox").value = "";
+  }
+  try {
+    document.getElementById("tabNoteTextBox").value = specialNotes["tab"];
+  } catch (TypeError) {
+    document.getElementById("tabNoteTextBox").value = "";
+  }
+  try {
+    document.getElementById("lineNoteTextBox").value = specialNotes["line"];
+  } catch (TypeError) {
+    document.getElementById("lineNoteTextBox").value = "";
+  }
 
   // HookUp Setting Values
   document.getElementById("cellsPerLineInput").value = cellsPerLine;

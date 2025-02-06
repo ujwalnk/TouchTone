@@ -26,11 +26,14 @@ function updateTableABC(abc) {
     table.insertRow();
     currentRow = table.firstChild.lastChild;
     currentRow.insertCell(-1);
+    currentRow.lastChild.contentEditable = "true";
 
     // Put the table onto HTML
     document.getElementById("paper").appendChild(table);
 
     var prevCur = "";
+
+    console.log(abc[0]);
 
     for (let x = 0; x < abc.length; x++) {
         // On adding a new line, remove the last blank cell on the previous line
@@ -40,9 +43,11 @@ function updateTableABC(abc) {
             }
             currentRow = table.insertRow();
             currentRow.insertCell(-1);
+            currentRow.lastChild.contentEditable = "true";
         } else if (abc[x] == "|") {
             // Delete extra cell on using a new cell
             currentRow.insertCell(-1);
+            currentRow.lastChild.contentEditable = "true";
         } else {
             // Add octave numbering at the bottom
 
@@ -52,8 +57,10 @@ function updateTableABC(abc) {
             else
                 currentRow.lastChild.innerHTML += "<span>" + abc[x].replace(/[^a-z]/gi, '') + "<sub>" + abc[x].match(/(\d+)/)[1] + "</sub></span>" + " ";
 
+            currentRow.lastChild.contentEditable = "false";
         }
         prevCur = abc[x];
+        
     }
 }
 
@@ -89,13 +96,16 @@ function updateTableSRG(abc) {
         if (abc[x] == "\n") {
             if (prevCur == "|") {
                 currentRow.deleteCell(-1);
+                currentRow.lastChild.contentEditable = "true";
             }
             currentRow = table.insertRow();
             currentRow.insertCell(-1);
         } else if (abc[x] == "|") {
             currentRow.insertCell(-1);
+            currentRow.lastChild.contentEditable = "true";
         } else {
             currentRow.lastChild.innerHTML += abc[x] + " ";
+            currentRow.lastChild.contentEditable = "false";
         }
         prevCur = abc[x];
     }
